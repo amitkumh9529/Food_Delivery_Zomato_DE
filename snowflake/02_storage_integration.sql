@@ -21,7 +21,7 @@ CREATE OR REPLACE STORAGE INTEGRATION FD_S3_INT
   STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::825990809826:role/Fd_Snowflake_S3_role'
   STORAGE_ALLOWED_LOCATIONS = ('s3://food-delivery-pipeline-ah/');
 
-GRANT USAGE ON INTEGRATION ZOMATO_S3_INT TO ROLE DBT_ROLE;
+GRANT USAGE ON INTEGRATION FD_S3_INT TO ROLE DBT_ROLE;
 
 -- Run this, then copy the two values into the IAM role trust policy (Step D).
 DESC INTEGRATION FD_S3_INT;
