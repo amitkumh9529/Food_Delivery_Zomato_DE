@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Jupyter / notebooks
+.ipynb_checkpoints/
+
+# Environment/config
+.env
+.env.*
+*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Data / generated files
+data/
+*.csv
+!data/*.csv
+
+# Snowflake / SQL artifacts if generated locally
+# *.sql~
+
+# Keep repository data tracked by default, unless you want to ignore all CSVs
+# The line above preserves tracked data files in the data/ folder if needed.
