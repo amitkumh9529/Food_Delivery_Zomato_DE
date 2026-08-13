@@ -54,5 +54,13 @@ data/
 # Snowflake / SQL artifacts if generated locally
 # *.sql~
 
+#FoodDelivery specific
+
+target/
+dbt_packages/
+logs/
+.env
+
+
 # Keep repository data tracked by default, unless you want to ignore all CSVs
 # The line above preserves tracked data files in the data/ folder if needed.
