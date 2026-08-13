@@ -1,0 +1,21 @@
+sources:
+  - name: raw
+    database: FD
+    schema: RAW
+    tables:
+      - name: restaurants
+        description: "This table contains the raw data of restaurants from FD."
+      - name: users
+        description: "This table contains the raw data of users from FD."
+      - name: food
+        description: "This table contains the raw data of food items from FD."
+      - name: menu
+        description: "This table contains the raw data of menus from FD."
+      - name: orders
+        description: "This table contains the raw data of orders from FD."
+      - name: order_items
+        description: "This table contains the raw data of order items from FD."
+      - name: reviews
+        description: "This table contains the raw data of reviews from FD."
+
+        
