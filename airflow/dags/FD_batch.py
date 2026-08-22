@@ -8,13 +8,13 @@ DBT_PROJECT = "/opt/airflow/dbt/FoodDelivery"
 
 COPY_RAW = [
     "USE WAREHOUSE FD_WH",
-    "COPY INTO FD.RAW.restaurants FROM @FD.RAW.ZOMATO_RAW_STAGE/restaurants/  ON_ERROR='CONTINUE'",
-    "COPY INTO FD.RAW.users       FROM @FD.RAW.ZOMATO_RAW_STAGE/users/        ON_ERROR='CONTINUE'",
-    "COPY INTO FD.RAW.food        FROM @FD.RAW.ZOMATO_RAW_STAGE/food/         ON_ERROR='CONTINUE'",
-    "COPY INTO FD.RAW.menu        FROM @FD.RAW.ZOMATO_RAW_STAGE/menu/         ON_ERROR='CONTINUE'",
-    "COPY INTO FD.RAW.orders      FROM @FD.RAW.ZOMATO_RAW_STAGE/orders/",
-    "COPY INTO FD.RAW.order_items FROM @FD.RAW.ZOMATO_RAW_STAGE/order_items/",
-    "COPY INTO FD.RAW.reviews     FROM @FD.RAW.ZOMATO_RAW_STAGE/reviews/",
+    "COPY INTO FD.RAW.restaurants FROM @FD.RAW.FD_RAW_STAGE/restaurants/  ON_ERROR='CONTINUE'",
+    "COPY INTO FD.RAW.users       FROM @FD.RAW.FD_RAW_STAGE/users/        ON_ERROR='CONTINUE'",
+    "COPY INTO FD.RAW.food        FROM @FD.RAW.FD_RAW_STAGE/food/         ON_ERROR='CONTINUE'",
+    "COPY INTO FD.RAW.menu        FROM @FD.RAW.FD_RAW_STAGE/menu/         ON_ERROR='CONTINUE'",
+    "COPY INTO FD.RAW.orders      FROM @FD.RAW.FD_RAW_STAGE/orders/",
+    "COPY INTO FD.RAW.order_items FROM @FD.RAW.FD_RAW_STAGE/order_items/",
+    "COPY INTO FD.RAW.reviews     FROM @FD.RAW.FD_RAW_STAGE/reviews/",
 ]
 
 with DAG(
@@ -36,14 +36,14 @@ with DAG(
         bash_command=f"{DBT} build --exclude tag:ai --project-dir {DBT_PROJECT} --profiles-dir {DBT_PROJECT}",
     )
 
-    enrich_reviews = BashOperator(
-        task_id="enrich_reviews",
-        bash_command=f"python /opt/airflow/ai/enrich_reviews.py",
-    )
+    # enrich_reviews = BashOperator(
+    #     task_id="enrich_reviews",
+    #     bash_command=f"python /opt/airflow/ai/enrich_reviews.py",
+    # )
 
-    dbt_build_ai = BashOperator(
-        task_id = "dbt_build_ai",
-        bash_command=f"{DBT} build --select tag:ai --project-dir {DBT_PROJECT} --profiles-dir {DBT_PROJECT}"
-    )
+    # dbt_build_ai = BashOperator(
+    #     task_id = "dbt_build_ai",
+    #     bash_command=f"{DBT} build --select tag:ai --project-dir {DBT_PROJECT} --profiles-dir {DBT_PROJECT}"
+    # )
 
-    reload_raw >> dbt_build_core >> enrich_reviews >> dbt_build_ai
+    reload_raw >> dbt_build_core # >> enrich_reviews >> dbt_build_ai
