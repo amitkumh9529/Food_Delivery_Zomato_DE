@@ -1,0 +1,13 @@
+FoodDelivery:
+  outputs:
+    dev:
+      account: ECRNGAP-VD57345
+      database: FD
+      password: Dexter@morgan69
+      role: DBT_ROLE
+      schema: STAGING
+      threads: 8
+      type: snowflake
+      user: DEXTER69
+      warehouse: FD_WH
+  target: dev
