@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MODEL = "openai/gpt-oss-20b"
+MODEL= "qwen/qwen3.6-27b"
 
 SAMPLE_N = 5
 TOPICS = ["food quality", "delivery", "pricing", "service", "packaging", "other"]
@@ -73,6 +73,8 @@ def classify_review(comment):
         ]
     )
     answer = response.choices[0].message.content
+    if answer is None:
+        raise ValueError("Groq returned no content for the review classification.")
     return json.loads(answer)
 
 def save_results(cursor, results):
