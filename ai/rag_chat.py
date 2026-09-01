@@ -16,7 +16,7 @@ TOP_K = 5
 CACHE_FILE = "review_embeddings.parquet"
 
 # Voyage AI client for embeddings
-voyage_client = voyageai.Client(api_key=os.getenv("VOYAGE_API_KEY"))
+vo = voyageai.Client(api_key=os.getenv("VOYAGE_API_KEY"))
 
 # Groq client for chat
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
@@ -50,7 +50,7 @@ def embed(texts, input_type="document"):
         return []
 
     # Voyage allows up to 1000 texts per request
-    result = voyage_client.embed(
+    result = vo.embed(
         texts,
         model=EMBEDDING_MODEL,
         input_type=input_type,
